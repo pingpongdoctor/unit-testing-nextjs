@@ -3,8 +3,6 @@ import styles from "./page.module.scss";
 import { useState } from "react";
 import UserProfile from "./components/UserProfile";
 import UserList from "./components/UserList";
-import { usePathname } from "next/navigation";
-import {} from "react";
 
 export default function HomePage() {
   const [showText, setShowText] = useState<boolean>(false);

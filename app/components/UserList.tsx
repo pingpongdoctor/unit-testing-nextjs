@@ -18,7 +18,7 @@ export default function UserList() {
           setTimeout(() => {
             setUsers(data);
             resolve(data);
-          }, 2000);
+          }, 1000);
         });
       })
       .then((data) => {
