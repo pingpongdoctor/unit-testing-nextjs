@@ -1,95 +1,58 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import styles from "./page.module.scss";
+import { useState } from "react";
+import UserProfile from "./components/UserProfile";
+import UserList from "./components/UserList";
+import { usePathname } from "next/navigation";
+import {} from "react";
 
-export default function Home() {
+export default function HomePage() {
+  const [showText, setShowText] = useState<boolean>(false);
+  const [showText2, setShowText2] = useState<boolean>(false);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main className={styles.mainElement}>
+      {/* ELEMENTS FOR RENDERING TESTING */}
+      <div style={{ marginBottom: "1rem" }}>
+        {" "}
+        <h1>Home Page</h1>
+        <button>Click</button>
+        <label htmlFor="input-1">Input Label</label>
+        <input placeholder="This is a placeholder" type="text" id="input-1" />
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      {/* ELEMENTS FOR BEHAVIOUR TESTING */}
+      <div>
+        {/* TEXT THAT APPEAR IMMEDIATELY AFTER THE BUTTON IS CLICKED */}
+        {showText && <p>Text that is rendered depending on state</p>}
+        <button
+          onClick={() => {
+            setShowText(!showText);
+          }}
+        >
+          Button to show the text
+        </button>
+
+        {/* TEXT THAT APPEAR AFTER A WHILE AFTER THE BUTTON IS CLICKED */}
+        {showText2 && (
+          <p>Text that is rendered after a while depending on state</p>
+        )}
+        <button
+          onClick={() => {
+            setTimeout(() => {
+              setShowText2(!showText);
+            }, 1100);
+          }}
+        >
+          Button to show the text after a while
+        </button>
       </div>
+      <UserProfile
+        name="simonfewfewfewfewcvwefwfewfewfewewfewfewfewfew"
+        age={18}
+        isVip={true}
+      />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <UserList />
     </main>
-  )
+  );
 }
