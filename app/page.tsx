@@ -3,6 +3,7 @@ import styles from "./page.module.scss";
 import { useState } from "react";
 import UserProfile from "./components/UserProfile";
 import UserList from "./components/UserList";
+import Form from "./components/Form";
 
 export default function HomePage() {
   const [showText, setShowText] = useState<boolean>(false);
@@ -51,6 +52,8 @@ export default function HomePage() {
       />
 
       <UserList />
+
+      <Form />
     </main>
   );
 }
